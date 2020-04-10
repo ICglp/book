@@ -18,26 +18,24 @@ import java.util.List;
 public class CateGotyController {
     @Autowired
     private CateGotyService cateGotyService;
+    @ResponseBody
     @GetMapping("/findAll")
-    public String findAll(HttpServletRequest request, HttpServletResponse response){
+    public Object findAll(HttpServletRequest request, HttpServletResponse response){
         List<CateGoty> cateGotyList=cateGotyService.findAll();
-        request.setAttribute("list",cateGotyList);
-        return "index";
+        return cateGotyList;
     }
 
     @GetMapping("/delete")
-    public String delete(HttpServletRequest request,HttpServletResponse response){
+    public void delete(HttpServletRequest request,HttpServletResponse response){
         String Cid=request.getParameter("Cid");
         cateGotyService.delete(Integer.valueOf(Cid));
-        return "index";
     }
 
     @PostMapping("/add")
-    public String add(HttpServletRequest request,HttpServletResponse response){
+    public void add(HttpServletRequest request,HttpServletResponse response){
         String Cname=request.getParameter("catename");
         if (Cname!=null){
             cateGotyService.add(Cname);
         }
-        return "index";
     }
 }
