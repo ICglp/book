@@ -14,11 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
+@ResponseBody
 @RequestMapping("/categoty")
 public class CateGotyController {
     @Autowired
     private CateGotyService cateGotyService;
-    @ResponseBody
     @GetMapping("/findAll")
     public Object findAll(HttpServletRequest request, HttpServletResponse response){
         List<CateGoty> cateGotyList=cateGotyService.findAll();

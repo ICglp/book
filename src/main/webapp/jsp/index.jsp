@@ -72,9 +72,8 @@
                 type: "get",
                 url: "/categoty/findAll",
                 success: function (res) {
-                    alert(res)
                     for (var i = 0; i < res.length; i++) {
-                        $("#tab").append("<tr style=\"background-color: #FFA500;\"><td >'+res[i].cname+'</td><td>删除</td></tr>")
+                        $("#tab").append("<tr><td>res[i].cname</td><td>删除</td></tr>")
                     }
                 }
         })
