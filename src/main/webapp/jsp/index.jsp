@@ -68,15 +68,16 @@
 </body>
 <script src="/js/jq.js"/>
     <script type="text/javascript">
-    $.ajax({
-        type:"get",
-        url:"/categoty/findAll",
-        success: function (res) {
-            for (var i=0;i<res.length;i++){
-                $("#tab").append("<tr style=\"background-color: #FFA500;\"><td >res[i].Cname</td><td>删除</td></tr>")
-            }
-        }
-    })
+        $.ajax({
+                type: "get",
+                url: "/categoty/findAll",
+                success: function (res) {
+                    alert(res)
+                    for (var i = 0; i < res.length; i++) {
+                        $("#tab").append("<tr style=\"background-color: #FFA500;\"><td >+res[i].Cname+</td><td>删除</td></tr>")
+                    }
+                }
+        })
     </script>
 </html>
 
