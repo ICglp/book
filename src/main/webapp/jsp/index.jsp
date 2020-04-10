@@ -51,12 +51,7 @@
                 <h3 style="padding-right: 240px; padding-top: 60px;" >图书分类信息</h3>
                 <table style="" border="1px;" id="tab">
                     <tr style="background-color: #FFA500;"><td >图书分类</td><td>操作</td></tr>
-                    <c:forEach items="${list}" var="cate">
-                        <tr>
-                            <td>${cate.cname}</td>
-                            <td><a href="/categoty/delete?Cid=${cate.id}">删除</a></td>
-                        </tr>
-                    </c:forEach>
+
                 </table>
             </div>
             <div class="div6">
@@ -78,7 +73,7 @@
         url:"/categoty/findAll",
         success: function (res) {
             for (var i=0;i<res.length;i++){
-                $('tab').open("")
+                $('tab').open("<tr style=\"background-color: #FFA500;\"><td >res[i].Cname</td><td>删除</td></tr>")
             }
         }
     })
