@@ -14,28 +14,32 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
-@ResponseBody
 @RequestMapping("/categoty")
 public class CateGotyController {
     @Autowired
     private CateGotyService cateGotyService;
     @GetMapping("/findAll")
+    @ResponseBody
     public Object findAll(HttpServletRequest request, HttpServletResponse response){
         List<CateGoty> cateGotyList=cateGotyService.findAll();
         return cateGotyList;
     }
 
     @GetMapping("/delete")
-    public void delete(HttpServletRequest request,HttpServletResponse response){
+    public String delete(HttpServletRequest request,HttpServletResponse response){
         String Cid=request.getParameter("Cid");
-        cateGotyService.delete(Integer.valueOf(Cid));
+        if (Cid!=null){
+            cateGotyService.delete(Integer.valueOf(Cid));
+        }
+        return "index";
     }
 
     @PostMapping("/add")
-    public void add(HttpServletRequest request,HttpServletResponse response){
+    public String add(HttpServletRequest request,HttpServletResponse response){
         String Cname=request.getParameter("catename");
         if (Cname!=null){
             cateGotyService.add(Cname);
         }
+        return "redirect:/jsp/index.jsp";
     }
 }

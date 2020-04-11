@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -38,7 +38,6 @@
 <div class="div1" style="width: 1200px; height: 700px;  margin:  0 auto; border-left-width: thick;">
     <div class="div2">
         <h1 align="center">--网上后台管理系统</h1><br>
-        <!--<h4 style="font-family: "arial black";" align="right">张三|<a href="${loginout}">退出登录</a></h4>-->
         <h4 align="right">${sessionScope.name},你好！<a href="/admin/logout">退出</a> </h4>
     </div>
     <div class="div3" align="center" style="background-color: orange;">
@@ -48,17 +47,24 @@
         </table>
         <div class="div4">
             <div class="div5">
-                <h3 style="padding-right: 240px; padding-top: 60px;" >图书分类信息</h3>
-                <table style="" border="1px;" id="tab">
-                    <tr style="background-color: #FFA500;"><td >图书分类</td><td>操作</td></tr>
-
-                </table>
+                <h3 style="padding-top: 60px;">修改图书信息</h3>
+                <form action="" method="post">
+                    <label>图书书名：</label><input type="text" width="80px;" /><br>
+                    <label>图书作者：</label><input type="text" width="80px;" /><br>
+                    <label>图书分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <select>
+                            <option value="volvo">古典文学</option>
+                            <option value="saab">娱乐书籍</option>
+                            <option value="opel">国外文学</option>
+                            <option value="audi">科学书籍</option>
+                        </select>&nbsp;&nbsp;&nbsp;<br>
+                        <label>图书价格：</label><input type="text" width="80px;" /><br>
+                        <label>出版社：&nbsp;&nbsp;&nbsp;</label><input type="text" width="80px;" /><br>
+                        <button type="submit">提交</button>
+                </form>
             </div>
             <div class="div6">
-                <h3 style="padding-top: 60px;">添加信息分类</h3>
-                <form action="/categoty/add" method="post">
-                    <label>分类名称：</label><input id="categoryAdd" type="text" width="80px;" name="catename" />	<button type="submit">保存</button>
-                </form>
+
 
             </div>
         </div>
@@ -66,19 +72,5 @@
     </div>
 </div>
 </body>
-<script src="/js/jq.js"/>
-<script>
-</script>
 </html>
-<script>
-    $.ajax({
-            type: "get",
-            url: "/categoty/findAll",
-            success: function (res) {
-                for (var i = 0; i < res.length; i++) {
-                    $("#tab").append("<tr><td>"+res[i].cname+"</td><td><a href='/categoty/delete?Cid="+ res[i].cid +"'>删除</a></td></tr>")
-                }
-            }
-    })
-</script>
 
