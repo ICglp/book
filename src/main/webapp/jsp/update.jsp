@@ -49,17 +49,16 @@
             <div class="div5">
                 <h3 style="padding-top: 60px;">修改图书信息</h3>
                 <form action="" method="post">
-                    <label>图书书名：</label><input type="text" width="80px;" /><br>
-                    <label>图书作者：</label><input type="text" width="80px;" /><br>
+                    <label>图书书名：</label><input type="text" width="80px;" value="${requestScope.book.BTitle}" /><br>
+                    <label>图书作者：</label><input value="${requestScope.book.BAuthor}" type="text" width="80px;" /><br>
                     <label>图书分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <select>
-                            <option value="volvo">古典文学</option>
-                            <option value="saab">娱乐书籍</option>
-                            <option value="opel">国外文学</option>
-                            <option value="audi">科学书籍</option>
+                        <select id="category">
+
                         </select>&nbsp;&nbsp;&nbsp;<br>
-                        <label>图书价格：</label><input type="text" width="80px;" /><br>
-                        <label>出版社：&nbsp;&nbsp;&nbsp;</label><input type="text" width="80px;" /><br>
+                        <label>图书价格：</label><input value="${requestScope.book.BPrice}" type="text" width="80px;" /><br>
+                        <label>出版社：&nbsp;&nbsp;&nbsp;</label><input value="${requestScope.book.BPublisher}" type="text" width="80px;" /><br>
+                        <label>当前图片：&nbsp;&nbsp;&nbsp;</label><img src="D:/imgs/1.jpg"><br>
+
                         <button type="submit">提交</button>
                 </form>
             </div>
@@ -77,6 +76,16 @@
 
     var id =window.location.href;
     var ids = id.substr(id.lastIndexOf());
+    $.ajax({
+        type: "get",
+        url: "/book/findByID",
+        data:{"id":ids},
+        success: function (res) {
+            for (var i = 0; i < res.length; i++) {
+                console.log(res)
+            }
+        }
+    });
     $.ajax({
         type: "get",
         url: "/categoty/findAll",

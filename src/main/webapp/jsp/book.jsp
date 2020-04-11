@@ -84,7 +84,7 @@
         success: function (res) {
             for (var i = 0; i < res.length; i++) {
                 console.log(res)
-                $("#tab").append("<tr><td>"+res[i].btitle+"</td><td>"+res[i].bauthor+"</td><td>"+res[i].bcategoryID+"</td><td>"+res[i].bprice+"</td><td><a href='/book/findByID?id="+res[i].bid+"'>修改</a>|<a href='#'>删除</a></td></tr>")
+                $("#tab").append("<tr><td>"+res[i].btitle+"</td><td>"+res[i].bauthor+"</td><td>"+res[i].bcategoryID+"</td><td>"+res[i].bprice+"</td><td><a href='/book/findByID?id="+res[i].bid+"'>修改</a>|<a href='/book/delete?id="+res[i].bid+"'>删除</a></td></tr>")
             }
         }
     });

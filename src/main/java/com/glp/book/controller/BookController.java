@@ -27,18 +27,17 @@ public class BookController {
         return bookList;
     }
     @GetMapping("/delete")
-    public void delete(HttpServletRequest request,HttpServletResponse response){
-        String Bid=request.getParameter("Bid");
+    public String delete(HttpServletRequest request,HttpServletResponse response){
+        String Bid=request.getParameter("id");
         bookService.delete(Integer.valueOf(Bid));
+        return "book";
     }
     @PostMapping("/add")
     public String add(HttpServletRequest request,HttpServletResponse response,@RequestParam("file")MultipartFile file) throws Exception {
         String originalFilename = file.getOriginalFilename();
         String extention = originalFilename.substring(originalFilename.lastIndexOf("."));
         String fileNameNew = UUID.randomUUID()+ extention;
-        System.out.println(fileNameNew);
-        String filelj="D:\\imgs\\"+fileNameNew;
-        System.out.println(filelj);
+        String filelj="";
         File file1=new File(filelj);
         file.transferTo(file1);
         Book book=new Book();
@@ -51,7 +50,7 @@ public class BookController {
         book.setBAuthor(bAuthor);
         book.setBPrice(Double.parseDouble(bPrice));
         book.setBPublisher(bPublisher);
-        book.setBPhoto(filelj);
+        book.setBPhoto(filelj+fileNameNew);
         book.setBCategoryID(Integer.valueOf(bCategoryID));
         bookService.add(book);
         return "book";
@@ -62,7 +61,7 @@ public class BookController {
         if (file!=null){
             String originalFilename = file.getOriginalFilename();
             String extention = originalFilename.substring(originalFilename.lastIndexOf("."));
-            fileNameNew = UUID.randomUUID() + "." + extention;
+            fileNameNew = UUID.randomUUID()+ extention;
             File file1=new File("/imgs/"+fileNameNew);
             file.transferTo(file1);
         }else {
@@ -89,6 +88,6 @@ public class BookController {
         String id = request.getParameter("id");
         Book book = bookService.findByID(Integer.valueOf(id));
         request.setAttribute("book",book);
-        return "book";
+        return "update";
     }
 }
