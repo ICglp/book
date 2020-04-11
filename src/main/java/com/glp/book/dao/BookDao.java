@@ -22,6 +22,6 @@ public interface BookDao {
     boolean add(Book book);
 
     //修改图书
-    @Update("")
-    boolean update()
+    @Update("update bookinfo set BTitle=#{BTitle},BAuthor=#{BAuthor},BPrice=#{BPrice},BCategoryID=#{BCategoryID},BPublisher=#{BPublisher},BPhoto=#{BPhoto} where Bid=#{Bid}")
+    boolean update(Book book);
 }
