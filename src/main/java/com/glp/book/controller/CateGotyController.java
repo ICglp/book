@@ -42,4 +42,11 @@ public class CateGotyController {
         }
         return "redirect:/jsp/index.jsp";
     }
+    @GetMapping("/findByID")
+    @ResponseBody
+    public Object findByID(HttpServletRequest request,HttpServletResponse response){
+        String bid = request.getParameter("Bid");
+        CateGoty cateGoty = cateGotyService.findByID(Integer.valueOf(bid));
+        return cateGoty;
+    }
 }

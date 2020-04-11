@@ -15,4 +15,7 @@ public interface CateGotyService {
 
     //添加类别
     boolean add(String Cname);
+
+    //根据id查找类别
+    CateGoty findByID(int id);
 }

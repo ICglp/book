@@ -39,4 +39,10 @@ public class CateGotyServiceImpl implements CateGotyService {
         }
         return relt;
     }
+
+    @Override
+    public CateGoty findByID(int id) {
+        CateGoty cateGoty = cateGotyDao.findByID(id);
+        return cateGoty;
+    }
 }

@@ -23,4 +23,8 @@ public interface CateGotyDao {
     //添加类别
     @Insert("insert into categoryinfo (Cid,Cname)values(0,#{Cname})")
     boolean add(String Cname);
+
+    //根据id查类别
+    @Select("select * from categoryinfo where Cid=#{id}")
+    CateGoty findByID(int id);
 }
