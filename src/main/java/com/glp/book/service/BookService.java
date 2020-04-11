@@ -14,4 +14,7 @@ public interface BookService {
 
     //添加图书
     boolean add(Book book);
+
+    //修改图书
+    boolean update(Book book);
 }

@@ -38,4 +38,15 @@ public class BookServiceImpl implements BookService {
         }
         return relt;
     }
+
+    @Override
+    public boolean update(Book book) {
+        boolean relt=false;
+        try {
+            relt=bookDao.update(book);
+        }catch (Exception e){
+            return relt;
+        }
+        return relt;
+    }
 }

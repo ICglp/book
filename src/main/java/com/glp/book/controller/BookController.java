@@ -51,4 +51,32 @@ public class BookController {
         book.setBCategoryID(Integer.valueOf(bCategoryID));
         bookDao.add(book);
     }
+    @PostMapping("/update")
+    public void update(HttpServletRequest request,HttpServletResponse response,@RequestParam("file")MultipartFile file) throws Exception {
+        String fileNameNew=null;
+        if (file!=null){
+            String originalFilename = file.getOriginalFilename();
+            String extention = originalFilename.substring(originalFilename.lastIndexOf("."));
+            fileNameNew = UUID.randomUUID() + "." + extention;
+            File file1=new File("/imgs/"+fileNameNew);
+            file.transferTo(file1);
+        }else {
+            fileNameNew=request.getParameter("usedFileName");
+        }
+        Book book=new Book();
+        String bid = request.getParameter("Bid");
+        String bTitle = request.getParameter("BTitle");
+        String bAuthor = request.getParameter("BAuthor");
+        String bPrice = request.getParameter("BPrice");
+        String bPublisher = request.getParameter("BPublisher");
+        String bCategoryID = request.getParameter("BCategoryID");
+        book.setBid(Integer.valueOf(bid));
+        book.setBTitle(bTitle);
+        book.setBAuthor(bAuthor);
+        book.setBPrice(Double.parseDouble(bPrice));
+        book.setBPublisher(bPublisher);
+        book.setBPhoto(fileNameNew);
+        book.setBCategoryID(Integer.valueOf(bCategoryID));
+        bookDao.update(book);
+    }
 }
