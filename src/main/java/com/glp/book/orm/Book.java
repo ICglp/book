@@ -1,13 +1,42 @@
 package com.glp.book.orm;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Book {
     private int Bid;
-    private String BTile;
+    private String BTitle;
     private String BAuthor;
     private Double BPrice;
     private int BCategoryID;
     private String BPublisher;
-    private Long BPhoto;
+    private String BPhoto;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "Bid=" + Bid +
+                ", BTitle='" + BTitle + '\'' +
+                ", BAuthor='" + BAuthor + '\'' +
+                ", BPrice=" + BPrice +
+                ", BCategoryID=" + BCategoryID +
+                ", BPublisher='" + BPublisher + '\'' +
+                ", BPhoto='" + BPhoto + '\'' +
+                '}';
+    }
+
+    public Book() {
+    }
+
+    public Book(int bid, String BTitle, String BAuthor, Double BPrice, int BCategoryID, String BPublisher, String BPhoto) {
+        Bid = bid;
+        this.BTitle = BTitle;
+        this.BAuthor = BAuthor;
+        this.BPrice = BPrice;
+        this.BCategoryID = BCategoryID;
+        this.BPublisher = BPublisher;
+        this.BPhoto = BPhoto;
+    }
 
     public int getBid() {
         return Bid;
@@ -17,12 +46,12 @@ public class Book {
         Bid = bid;
     }
 
-    public String getBTile() {
-        return BTile;
+    public String getBTitle() {
+        return BTitle;
     }
 
-    public void setBTile(String BTile) {
-        this.BTile = BTile;
+    public void setBTitle(String BTitle) {
+        this.BTitle = BTitle;
     }
 
     public String getBAuthor() {
@@ -57,24 +86,11 @@ public class Book {
         this.BPublisher = BPublisher;
     }
 
-    public Long getBPhoto() {
+    public String getBPhoto() {
         return BPhoto;
     }
 
-    public void setBPhoto(Long BPhoto) {
-        this.BPhoto = BPhoto;
-    }
-
-    public Book() {
-    }
-
-    public Book(int bid, String BTile, String BAuthor, Double BPrice, int BCategoryID, String BPublisher, Long BPhoto) {
-        Bid = bid;
-        this.BTile = BTile;
-        this.BAuthor = BAuthor;
-        this.BPrice = BPrice;
-        this.BCategoryID = BCategoryID;
-        this.BPublisher = BPublisher;
+    public void setBPhoto(String BPhoto) {
         this.BPhoto = BPhoto;
     }
 }

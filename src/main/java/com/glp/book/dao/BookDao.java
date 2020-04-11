@@ -1,10 +1,7 @@
 package com.glp.book.dao;
 
 import com.glp.book.orm.Book;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,7 +17,11 @@ public interface BookDao {
     @Delete("DELETE FROM bookinfo WHERE Bid=#{id}")
     boolean delete(int id);
 
-    //添加类别
+    //添加图书
     @Insert("insert into bookinfo (Bid,BTitle,BAuthor,BPrice,BCategoryID,BPublisher,BPhoto)values(0,#{book.BTitle},#{book.BAuthor},#{book.BPrice},#{book.BCategoryID},#{book.BPublisher},#{book.BPhoto})")
     boolean add(Book book);
+
+    //修改图书
+    @Update("")
+    boolean update()
 }

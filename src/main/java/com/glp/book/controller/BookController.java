@@ -31,11 +31,24 @@ public class BookController {
         bookDao.delete(Integer.valueOf(Bid));
     }
     @PostMapping("/add")
-    public void add(@RequestParam("file")MultipartFile file) throws Exception {
+    public void add(HttpServletRequest request,HttpServletResponse response,@RequestParam("file")MultipartFile file) throws Exception {
         String originalFilename = file.getOriginalFilename();
         String extention = originalFilename.substring(originalFilename.lastIndexOf("."));
         String fileNameNew = UUID.randomUUID() + "." + extention;
-        File file1=new File("/imgs"+fileNameNew);
+        File file1=new File("/imgs/"+fileNameNew);
         file.transferTo(file1);
+        Book book=new Book();
+        String bTitle = request.getParameter("BTitle");
+        String bAuthor = request.getParameter("BAuthor");
+        String bPrice = request.getParameter("BPrice");
+        String bPublisher = request.getParameter("BPublisher");
+        String bCategoryID = request.getParameter("BCategoryID");
+        book.setBTitle(bTitle);
+        book.setBAuthor(bAuthor);
+        book.setBPrice(Double.parseDouble(bPrice));
+        book.setBPublisher(bPublisher);
+        book.setBPhoto(fileNameNew);
+        book.setBCategoryID(Integer.valueOf(bCategoryID));
+        bookDao.add(book);
     }
 }
