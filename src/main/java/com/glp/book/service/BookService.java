@@ -17,4 +17,6 @@ public interface BookService {
 
     //修改图书
     boolean update(Book book);
+
+    Book findByID(int id);
 }

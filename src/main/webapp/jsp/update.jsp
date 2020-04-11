@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html>
+<>
 <head>
     <meta charset="utf-8">
     <title>网上后台管理系统</title>
@@ -72,5 +72,20 @@
     </div>
 </div>
 </body>
+<script src="/js/jq.js"></script>
+<script>
+
+    var id =window.location.href;
+    var ids = id.substr(id.lastIndexOf());
+    $.ajax({
+        type: "get",
+        url: "/categoty/findAll",
+        success: function (res) {
+            for (var i = 0; i < res.length; i++) {
+                $("#category").append("<option value='"+res[i].cid+"'>"+res[i].cname+"</option>")
+            }
+        }
+    })
+</script>
 </html>
 

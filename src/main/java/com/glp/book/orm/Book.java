@@ -12,6 +12,16 @@ public class Book {
     private String BPublisher;
     private String BPhoto;
 
+    private CateGoty cateGoty;
+
+    public CateGoty getCateGoty() {
+        return cateGoty;
+    }
+
+    public void setCateGoty(CateGoty cateGoty) {
+        this.cateGoty = cateGoty;
+    }
+
     @Override
     public String toString() {
         return "Book{" +

@@ -49,4 +49,8 @@ public class BookServiceImpl implements BookService {
         }
         return relt;
     }
+    public Book findByID(int id){
+        Book book = bookDao.findByID(id);
+        return book;
+    }
 }

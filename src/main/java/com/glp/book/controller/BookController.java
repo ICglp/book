@@ -2,6 +2,7 @@ package com.glp.book.controller;
 
 import com.glp.book.dao.BookDao;
 import com.glp.book.orm.Book;
+import com.glp.book.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,24 +19,27 @@ import java.util.UUID;
 @RequestMapping("/book")
 public class BookController {
     @Autowired
-    private BookDao bookDao;
+    private BookService bookService;
     @GetMapping("/findAll")
     @ResponseBody
     public Object findAll(HttpServletRequest request, HttpServletResponse response){
-        List<Book> bookList= bookDao.findAll();
+        List<Book> bookList= bookService.findAll();
         return bookList;
     }
     @GetMapping("/delete")
     public void delete(HttpServletRequest request,HttpServletResponse response){
         String Bid=request.getParameter("Bid");
-        bookDao.delete(Integer.valueOf(Bid));
+        bookService.delete(Integer.valueOf(Bid));
     }
     @PostMapping("/add")
-    public void add(HttpServletRequest request,HttpServletResponse response,@RequestParam("file")MultipartFile file) throws Exception {
+    public String add(HttpServletRequest request,HttpServletResponse response,@RequestParam("file")MultipartFile file) throws Exception {
         String originalFilename = file.getOriginalFilename();
         String extention = originalFilename.substring(originalFilename.lastIndexOf("."));
-        String fileNameNew = UUID.randomUUID() + "." + extention;
-        File file1=new File("/imgs/"+fileNameNew);
+        String fileNameNew = UUID.randomUUID()+ extention;
+        System.out.println(fileNameNew);
+        String filelj="D:\\imgs\\"+fileNameNew;
+        System.out.println(filelj);
+        File file1=new File(filelj);
         file.transferTo(file1);
         Book book=new Book();
         String bTitle = request.getParameter("BTitle");
@@ -47,9 +51,10 @@ public class BookController {
         book.setBAuthor(bAuthor);
         book.setBPrice(Double.parseDouble(bPrice));
         book.setBPublisher(bPublisher);
-        book.setBPhoto(fileNameNew);
+        book.setBPhoto(filelj);
         book.setBCategoryID(Integer.valueOf(bCategoryID));
-        bookDao.add(book);
+        bookService.add(book);
+        return "book";
     }
     @PostMapping("/update")
     public void update(HttpServletRequest request,HttpServletResponse response,@RequestParam("file")MultipartFile file) throws Exception {
@@ -77,6 +82,13 @@ public class BookController {
         book.setBPublisher(bPublisher);
         book.setBPhoto(fileNameNew);
         book.setBCategoryID(Integer.valueOf(bCategoryID));
-        bookDao.update(book);
+        bookService.update(book);
+    }
+    @GetMapping("/findByID")
+    public String findByID(HttpServletRequest request,HttpServletResponse response){
+        String id = request.getParameter("id");
+        Book book = bookService.findByID(Integer.valueOf(id));
+        request.setAttribute("book",book);
+        return "book";
     }
 }

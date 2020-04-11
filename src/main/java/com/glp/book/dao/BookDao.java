@@ -18,10 +18,13 @@ public interface BookDao {
     boolean delete(int id);
 
     //添加图书
-    @Insert("insert into bookinfo (Bid,BTitle,BAuthor,BPrice,BCategoryID,BPublisher,BPhoto)values(0,#{book.BTitle},#{book.BAuthor},#{book.BPrice},#{book.BCategoryID},#{book.BPublisher},#{book.BPhoto})")
+    @Insert("insert into bookinfo (Bid,BTitle,BAuthor,BPrice,BCategoryID,BPublisher,BPhoto)values(0,#{BTitle},#{BAuthor},#{BPrice},#{BCategoryID},#{BPublisher},#{BPhoto})")
     boolean add(Book book);
 
     //修改图书
     @Update("update bookinfo set BTitle=#{BTitle},BAuthor=#{BAuthor},BPrice=#{BPrice},BCategoryID=#{BCategoryID},BPublisher=#{BPublisher},BPhoto=#{BPhoto} where Bid=#{Bid}")
     boolean update(Book book);
+
+    @Select("select * from bookinfo where Bid=#{id}")
+    Book findByID(int id);
 }
