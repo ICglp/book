@@ -57,7 +57,7 @@
                         </select>&nbsp;&nbsp;&nbsp;<br>
                         <label>图书价格：</label><input value="${requestScope.book.BPrice}" type="text" width="80px;" /><br>
                         <label>出版社：&nbsp;&nbsp;&nbsp;</label><input value="${requestScope.book.BPublisher}" type="text" width="80px;" /><br>
-                        <label>当前图片：&nbsp;&nbsp;&nbsp;</label><img src="D:/imgs/1.jpg"><br>
+                        <label>当前图片：&nbsp;&nbsp;&nbsp;</label><img src=""><br>
 
                         <button type="submit">提交</button>
                 </form>
