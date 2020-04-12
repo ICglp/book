@@ -48,11 +48,11 @@
         <div class="div4">
             <div class="div5">
                 <h3 style="padding-top: 60px;">修改图书信息</h3>
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <label>图书书名：</label><input type="text" width="80px;" value="${requestScope.book.BTitle}" /><br>
                     <label>图书作者：</label><input value="${requestScope.book.BAuthor}" type="text" width="80px;" /><br>
                     <label>图书分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <select id="category">
+                        <select id="category" name="BCategoryID">
 
                         </select>&nbsp;&nbsp;&nbsp;<br>
                         <label>图书价格：</label><input value="${requestScope.book.BPrice}" type="text" width="80px;" /><br>
@@ -62,12 +62,7 @@
                         <button type="submit">提交</button>
                 </form>
             </div>
-            <div class="div6">
-
-
-            </div>
         </div>
-
     </div>
 </div>
 </body>
