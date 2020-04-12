@@ -45,6 +45,7 @@
             <tbody><a href="">首页</a></tbody>!--<tbody><a href="">图书分类管理</a></tbody>!--
             <tbody><a href="">图书管理</a></tbody>!--<tbody><a href="">购书订单管理</a>!--</tbody>
         </table>
+    </div>
         <div class="div4">
             <div class="div5">
                 <h3 style="padding-top: 60px;">修改图书信息</h3>
@@ -58,8 +59,8 @@
                         <label>图书价格：</label><input value="${requestScope.book.BPrice}" type="text" width="80px;" /><br>
                         <label>出版社：&nbsp;&nbsp;&nbsp;</label><input value="${requestScope.book.BPublisher}" type="text" width="80px;" /><br>
                         <label>当前图片：&nbsp;&nbsp;&nbsp;</label><img src=""><br>
-
                         <button type="submit">提交</button>
+                    </label>
                 </form>
             </div>
         </div>
