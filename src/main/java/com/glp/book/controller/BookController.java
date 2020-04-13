@@ -1,7 +1,10 @@
 package com.glp.book.controller;
 
+import com.glp.book.dao.CateGotyDao;
 import com.glp.book.orm.Book;
+import com.glp.book.orm.CateGoty;
 import com.glp.book.service.BookService;
+import com.glp.book.service.CateGotyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +21,8 @@ import java.util.UUID;
 public class BookController {
     @Autowired
     private BookService bookService;
+    @Autowired
+    private CateGotyService cateGotyService;
     @GetMapping("/findAll")
     @ResponseBody
     public Object findAll(HttpServletRequest request, HttpServletResponse response){
@@ -88,6 +93,8 @@ public class BookController {
         String id = request.getParameter("id");
         Book book = bookService.findByID(Integer.valueOf(id));
         request.setAttribute("book",book);
+        List<CateGoty> cateGotyList = cateGotyService.findAll();
+        request.setAttribute("cateGotyList",cateGotyList);
         return "update";
     }
 }

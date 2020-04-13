@@ -54,7 +54,12 @@
                     <label>图书作者：</label><input name="BAuthor" value="${requestScope.book.BAuthor}" type="text" width="80px;" /><br>
                     <label>图书分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <select id="category" name="BCategoryID">
-
+                            <option  value="${requestScope.book.cateGoty.cid}">${requestScope.book.cateGoty.cname}</option>
+                            <c:forEach items="${cateGotyList}" var="cate">
+                                <c:if test="${cate.cname != requestScope.book.cateGoty.cname}">
+                                    <option value="${cate.cid}">${cate.cname}</option>
+                                </c:if>
+                            </c:forEach>
                         </select>&nbsp;&nbsp;&nbsp;<br>
                         <label>图书价格：</label><input name="BPrice" value="${requestScope.book.BPrice}" type="text" width="80px;" /><br>
                         <label>出版社：&nbsp;&nbsp;&nbsp;</label><input name="BPublisher" value="${requestScope.book.BPublisher}" type="text" width="80px;" /><br>
@@ -68,17 +73,5 @@
     </div>
 </div>
 </body>
-<script src="/js/jq.js"></script>
-<script>
-    $.ajax({
-        type: "get",
-        url: "/categoty/findAll",
-        success: function (res) {
-            for (var i = 0; i < res.length; i++) {
-                $("#category").append("<option value='"+res[i].cid+"'>"+res[i].cname+"</option>")
-            }
-        }
-    })
-</script>
 </html>
 

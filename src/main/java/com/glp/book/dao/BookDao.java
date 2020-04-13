@@ -39,5 +39,20 @@ public interface BookDao {
     boolean update(Book book);
 
     @Select("select * from bookinfo where Bid=#{id}")
+    @Results({
+            @Result(id=true,property = "Bid",column = "Bid"),
+            @Result(property = "BTitle",column = "BTitle"),
+            @Result(property = "BAuthor",column = "BAuthor"),
+            @Result(property = "BPrice",column = "BPrice"),
+            @Result(property = "BCategoryID",column = "BCategoryID"),
+            @Result(property = "BPublisher",column = "BPublisher"),
+            @Result(property = "BPhoto",column = "BPhoto"),
+            @Result(property = "cateGoty",column = "BCategoryID",javaType = CateGoty.class,
+                    one = @One(select = "com.glp.book.dao.CateGotyDao.findByID",fetchType = FetchType.DEFAULT))
+    })
     Book findByID(int id);
+
+    //根据类别id删除所有类别的书
+    @Delete("DELETE FROM bookinfo WHERE BCategoryID=#{id}")
+    boolean deleteCate(int id);
 }

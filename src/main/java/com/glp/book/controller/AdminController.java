@@ -37,6 +37,13 @@ public class AdminController {
                 cookie.setMaxAge(60*60*24*7);
                 response.addCookie(cookie1);
                 response.addCookie(cookie);
+            }else {
+                Cookie cookie = new Cookie("remebername",null);//cookie名字要相同
+                cookie.setMaxAge(0); //
+                Cookie cookie1 = new Cookie("remeberpwd",null);//cookie名字要相同
+                cookie.setMaxAge(0); //
+                response.addCookie(cookie);
+                response.addCookie(cookie1);
             }
             request.getSession().setAttribute("name",admin1.getAname());
             return "index";
