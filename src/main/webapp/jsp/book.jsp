@@ -63,7 +63,7 @@
                         </select>&nbsp;&nbsp;&nbsp;<br>
                         <label>图书价格：</label><input name="BPrice" type="text" width="80px;" /><br>
                         <label>出版社：&nbsp;&nbsp;&nbsp;</label><input name="BPublisher" type="text" width="80px;" /><br>
-                        <div style="display: flex;position: relative;padding: 5px 0"><span style="position: absolute;top: 5px;left: 20px">图片：&nbsp;&nbsp;&nbsp;</span><span style="margin-left: 80px"><input name="file" type="file" width="80px;" /></span></div>
+                        <div style="display: flex;position: relative;padding: 5px 0"><span style="position: absolute;top: 5px;left: 20px">图片：&nbsp;&nbsp;&nbsp;</span><span style="margin-left: 80px"><input name="file" type="file" width="80px;" accept="image/*"/></span></div>
                         <button style="margin-top: 10px" type="submit">提交</button>
                 </form>
             </div>

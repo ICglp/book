@@ -49,16 +49,17 @@
         <div class="div4">
             <div class="div5">
                 <h3 style="padding-top: 60px;">修改图书信息</h3>
-                <form action="" method="post" enctype="multipart/form-data">
-                    <label>图书书名：</label><input type="text" width="80px;" value="${requestScope.book.BTitle}" /><br>
-                    <label>图书作者：</label><input value="${requestScope.book.BAuthor}" type="text" width="80px;" /><br>
+                <form action="/book/update?Bid=${requestScope.book.bid}&&BPhoto=${requestScope.book.BPhoto}" method="post" enctype="multipart/form-data">
+                    <label>图书书名：</label><input name="BTitle" type="text" width="80px;" value="${requestScope.book.BTitle}" /><br>
+                    <label>图书作者：</label><input name="BAuthor" value="${requestScope.book.BAuthor}" type="text" width="80px;" /><br>
                     <label>图书分类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <select id="category" name="BCategoryID">
 
                         </select>&nbsp;&nbsp;&nbsp;<br>
-                        <label>图书价格：</label><input value="${requestScope.book.BPrice}" type="text" width="80px;" /><br>
-                        <label>出版社：&nbsp;&nbsp;&nbsp;</label><input value="${requestScope.book.BPublisher}" type="text" width="80px;" /><br>
-                        <label>当前图片：&nbsp;&nbsp;&nbsp;</label><img src=""><br>
+                        <label>图书价格：</label><input name="BPrice" value="${requestScope.book.BPrice}" type="text" width="80px;" /><br>
+                        <label>出版社：&nbsp;&nbsp;&nbsp;</label><input name="BPublisher" value="${requestScope.book.BPublisher}" type="text" width="80px;" /><br>
+                        <label>当前图片：&nbsp;&nbsp;&nbsp;</label><img src="/imgs/${requestScope.book.BPhoto}" height="50px" width="100px"><br>
+                        <div style="display: flex;position: relative;padding: 5px 0"><span style="position: absolute;top: 5px;left: 20px">图片：&nbsp;&nbsp;&nbsp;</span><span style="margin-left: 80px"><input name="file" type="file" width="80px;" accept="image/*"/></span></div>
                         <button type="submit">提交</button>
                     </label>
                 </form>
@@ -69,19 +70,6 @@
 </body>
 <script src="/js/jq.js"></script>
 <script>
-
-    var id =window.location.href;
-    var ids = id.substr(id.lastIndexOf());
-    $.ajax({
-        type: "get",
-        url: "/book/findByID",
-        data:{"id":ids},
-        success: function (res) {
-            for (var i = 0; i < res.length; i++) {
-                console.log(res)
-            }
-        }
-    });
     $.ajax({
         type: "get",
         url: "/categoty/findAll",

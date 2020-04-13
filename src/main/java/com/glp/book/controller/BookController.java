@@ -1,6 +1,5 @@
 package com.glp.book.controller;
 
-import com.glp.book.dao.BookDao;
 import com.glp.book.orm.Book;
 import com.glp.book.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,8 +35,8 @@ public class BookController {
         String originalFilename = file.getOriginalFilename();
         String extention = originalFilename.substring(originalFilename.lastIndexOf("."));
         String fileNameNew = UUID.randomUUID()+ extention;
-        String filelj="";
-        File file1=new File(filelj);
+        String destFileName = request.getServletContext().getRealPath("") + "imgs" + File.separator + fileNameNew;
+        File file1=new File(destFileName);
         file.transferTo(file1);
         Book book=new Book();
         String bTitle = request.getParameter("BTitle");
@@ -50,22 +48,23 @@ public class BookController {
         book.setBAuthor(bAuthor);
         book.setBPrice(Double.parseDouble(bPrice));
         book.setBPublisher(bPublisher);
-        book.setBPhoto(filelj+fileNameNew);
+        book.setBPhoto(fileNameNew);
         book.setBCategoryID(Integer.valueOf(bCategoryID));
         bookService.add(book);
         return "book";
     }
     @PostMapping("/update")
-    public void update(HttpServletRequest request,HttpServletResponse response,@RequestParam("file")MultipartFile file) throws Exception {
+    public String update(HttpServletRequest request,HttpServletResponse response,@RequestParam("file")MultipartFile file) throws Exception {
         String fileNameNew=null;
-        if (file!=null){
+        if (!(file.getOriginalFilename().isEmpty()||file.getOriginalFilename()==null)){
             String originalFilename = file.getOriginalFilename();
             String extention = originalFilename.substring(originalFilename.lastIndexOf("."));
             fileNameNew = UUID.randomUUID()+ extention;
-            File file1=new File("/imgs/"+fileNameNew);
+            String destFileName = request.getServletContext().getRealPath("") + "imgs" + File.separator + fileNameNew;
+            File file1=new File(destFileName);
             file.transferTo(file1);
         }else {
-            fileNameNew=request.getParameter("usedFileName");
+            fileNameNew=request.getParameter("BPhoto");
         }
         Book book=new Book();
         String bid = request.getParameter("Bid");
@@ -82,6 +81,7 @@ public class BookController {
         book.setBPhoto(fileNameNew);
         book.setBCategoryID(Integer.valueOf(bCategoryID));
         bookService.update(book);
+        return "book";
     }
     @GetMapping("/findByID")
     public String findByID(HttpServletRequest request,HttpServletResponse response){
