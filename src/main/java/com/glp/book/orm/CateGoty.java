@@ -4,6 +4,14 @@ public class CateGoty {
     private int Cid;
     private String Cname;
 
+    @Override
+    public String toString() {
+        return "CateGoty{" +
+                "Cid=" + Cid +
+                ", Cname='" + Cname + '\'' +
+                '}';
+    }
+
     public int getCid() {
         return Cid;
     }

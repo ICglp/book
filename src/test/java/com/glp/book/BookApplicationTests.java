@@ -17,7 +17,11 @@ class BookApplicationTests {
     private BookDao bookDao;
     @Test
     void contextLoads() {
-        bookDao.add(new Book(1,"AA","AA",1.11,1,"AA","AA"));
+        List<Book> bookList = bookDao.findAll();
+        for (Book book:bookList){
+            System.out.println(book);
+            System.out.println(book.getCateGoty().getCname());
+        }
     }
 
 }

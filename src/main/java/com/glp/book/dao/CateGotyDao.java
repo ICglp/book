@@ -26,5 +26,5 @@ public interface CateGotyDao {
 
     //根据id查类别
     @Select("select * from categoryinfo where Cid=#{id}")
-    CateGoty findByID(int id);
+    CateGoty findByID(int Cid);
 }

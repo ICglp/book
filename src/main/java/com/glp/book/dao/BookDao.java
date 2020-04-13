@@ -1,7 +1,9 @@
 package com.glp.book.dao;
 
 import com.glp.book.orm.Book;
+import com.glp.book.orm.CateGoty;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,6 +13,17 @@ import java.util.List;
 public interface BookDao {
     //查询所有图书
     @Select("select * from bookinfo")
+    @Results({
+            @Result(id=true,property = "Bid",column = "Bid"),
+            @Result(property = "BTitle",column = "BTitle"),
+            @Result(property = "BAuthor",column = "BAuthor"),
+            @Result(property = "BPrice",column = "BPrice"),
+            @Result(property = "BCategoryID",column = "BCategoryID"),
+            @Result(property = "BPublisher",column = "BPublisher"),
+            @Result(property = "BPhoto",column = "BPhoto"),
+            @Result(property = "cateGoty",column = "BCategoryID",javaType = CateGoty.class,
+                    one = @One(select = "com.glp.book.dao.CateGotyDao.findByID",fetchType = FetchType.DEFAULT))
+    })
     List<Book> findAll();
 
     //删除图书
