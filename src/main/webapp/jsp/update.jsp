@@ -42,8 +42,8 @@
     </div>
     <div class="div3" align="center" style="background-color: orange;">
         <table style="border: 2px antiquewhite; background-color: orange;">
-            <tbody><a href="">首页</a></tbody>!--<tbody><a href="">图书分类管理</a></tbody>!--
-            <tbody><a href="">图书管理</a></tbody>!--<tbody><a href="">购书订单管理</a>!--</tbody>
+            <tbody><a href="/jsp/index.jsp">首页</a></tbody>!--<tbody><a href="/jsp/index.jsp">图书分类管理</a></tbody>!--
+            <tbody><a href="/jsp/book.jsp">图书管理</a></tbody>!--<tbody><a href="">购书订单管理</a>!--</tbody>
         </table>
     </div>
         <div class="div4">
